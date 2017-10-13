@@ -28,7 +28,6 @@
 - name: sync duplicity site config
   copy: src=duplicity/{{ inventory_hostname }}.txt
         dest={{ duplicity_config_dest }}
-  # when: (inventory_dir + '/files/duplicity/' + inventory_hostname + '.txt') | is_file
   when: site_config.stat.exists
   tags: debug
 
