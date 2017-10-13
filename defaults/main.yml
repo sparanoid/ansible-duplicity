@@ -1,0 +1,14 @@
+---
+duplicity_config_dest: /srv/scripts/duplicity/
+duplicity_conf_root: /srv/
+duplicity_conf_dest: s3+http://duplicity-backup/$HOSTNAME/
+duplicity_conf_aws_access_key: aws_access_key
+duplicity_conf_aws_secret_key: aws_secret_key
+duplicity_conf_incexcfile: /srv/scripts/duplicity/$HOSTNAME.txt
+duplicity_conf_log_dir: /var/log/duplicity/
+duplicity_conf_log_file: duplicity-`date +%Y-%m-%d_%H-%M`.log
+duplicity_conf_log_owner: duplicity:duplicity
+duplicity_conf_slack_hook: https://hooks.slack.com/services/XXXXXXXXX/XXXXXXXXX/XXXXXXXXXXXXXXXXXXXXXXXX
+duplicity_conf_slack_channel: "#status"
+duplicity_conf_slack_username: duplicity-backup
+duplicity_conf_slack_emoji: package
