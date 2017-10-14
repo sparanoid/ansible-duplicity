@@ -8,7 +8,7 @@
 
 - name: sync duplicity script
   copy:
-    src: duplicity-backup.sh
+    src: duplicity/duplicity-backup.sh
     dest: "{{ duplicity_config_dest }}"
 
 - name: sync duplicity global config
