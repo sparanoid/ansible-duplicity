@@ -1,16 +1,20 @@
 - name: install essential packages
-  yum: name={{ item }} state=present
+  yum:
+    name: "{{ item }}"
+    state: present
   with_items:
     - duplicity
   notify: update updatedb
 
 - name: sync duplicity script
-  copy: src=duplicity-backup.sh
-        dest={{ duplicity_config_dest }}
+  copy:
+    src: duplicity-backup.sh
+    dest: "{{ duplicity_config_dest }}"
 
 - name: sync duplicity global config
-  template: src=server.conf
-            dest={{ duplicity_config_dest }}
+  template:
+    src: server.conf
+    dest: "{{ duplicity_config_dest }}"
 
 - name: check if site config exists
   local_action: stat path={{ inventory_dir }}/files/duplicity/{{ inventory_hostname }}.txt
@@ -26,13 +30,15 @@
   tags: debug
 
 - name: sync duplicity site config
-  copy: src=duplicity/{{ inventory_hostname }}.txt
-        dest={{ duplicity_config_dest }}
+  copy:
+    src: duplicity/{{ inventory_hostname }}.txt
+    dest: "{{ duplicity_config_dest }}"
   when: site_config.stat.exists
   tags: debug
 
 - name: create cron
-  cron: name="duplicity"
-        minute="0"
-        hour="6"
-        job="bash {{ duplicity_config_dest }}/duplicity-backup.sh -c '{{ duplicity_config_dest }}/server.conf' -b"
+  cron:
+    name: duplicity
+    minute: 0
+    hour: 6
+    job: "bash {{ duplicity_config_dest }}/duplicity-backup.sh -c '{{ duplicity_config_dest }}/server.conf' -b"
