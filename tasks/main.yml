@@ -24,7 +24,7 @@
 - name: site config warning
   debug:
     msg: |
-      Custom site config not exists! please create your own config in
+      Custom site config does not exists! please create your own config in
         {{ inventory_dir }}/files/duplicity/{{ inventory_hostname }}.txt
   when: not site_config.stat.exists
   tags: debug
