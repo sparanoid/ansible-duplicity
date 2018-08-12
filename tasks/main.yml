@@ -41,5 +41,5 @@
     name: duplicity
     minute: 0
     hour: 6
-    day: 1
+    weekday: 1
     job: "bash {{ duplicity_config_dest }}/duplicity-backup.sh -c '{{ duplicity_config_dest }}/server.conf' -b"
