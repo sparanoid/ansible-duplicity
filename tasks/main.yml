@@ -9,12 +9,12 @@
 - name: sync duplicity script
   copy:
     src: duplicity/duplicity-backup.sh
-    dest: "{{ duplicity_config_dest }}"
+    dest: "{{ duplicity_config_dest }}/"
 
 - name: sync duplicity global config
   template:
     src: server.conf
-    dest: "{{ duplicity_config_dest }}"
+    dest: "{{ duplicity_config_dest }}/"
 
 - name: check if site config exists
   local_action: stat path={{ inventory_dir }}/files/duplicity/{{ inventory_hostname }}.txt
@@ -32,7 +32,7 @@
 - name: sync duplicity site config
   copy:
     src: duplicity/{{ inventory_hostname }}.txt
-    dest: "{{ duplicity_config_dest }}"
+    dest: "{{ duplicity_config_dest }}/"
   when: site_config.stat.exists
   tags: debug
 
@@ -40,6 +40,5 @@
   cron:
     name: duplicity
     minute: 0
-    hour: 6
-    weekday: 1
+    hour: 4
     job: "bash {{ duplicity_config_dest }}/duplicity-backup.sh -c '{{ duplicity_config_dest }}/server.conf' -b"

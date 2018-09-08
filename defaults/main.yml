@@ -1,5 +1,5 @@
 ---
-duplicity_config_dest: /srv/scripts/duplicity/
+duplicity_config_dest: /srv/scripts/duplicity
 duplicity_conf_root: /srv/
 duplicity_conf_dest: s3+http://duplicity-backup/$HOSTNAME/
 duplicity_conf_aws_access_key: aws_access_key
