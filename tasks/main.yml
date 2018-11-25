@@ -1,9 +1,7 @@
 - name: install essential packages
   yum:
-    name: "{{ item }}"
+    name: duplicity
     state: present
-  with_items:
-    - duplicity
   notify: update updatedb
 
 - name: sync duplicity script
